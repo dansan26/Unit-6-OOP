@@ -4,7 +4,7 @@ def main():
     # print(cart)
     while True:
         print('\n---Shopping Cart Menu ---')
-        print('0. Exit\n1. Display Cart\n2. Add items')
+        print('0. Exit\n1. Display Cart\n2. Add items\n3.Remove Item from the Cart\n4. Check out')
 
         choice = input('Please choose an option: ')
         if choice == '0':
@@ -15,8 +15,14 @@ def main():
         elif choice == '2':
             item = input('Enter the item name: ')
             price = float(input('Enter the price: '))
-            quantity = int('Enter the quantity: ')
+            quantity = int(input('Enter the quantity: '))
             cart.add_items(item, price, quantity)
+        elif choice == '3':
+            item = input('Enter the item name to remove: ')
+            quantity = int(input('Enter the quantity being removed: '))
+            cart.remove_item(item, quantity)
+        elif choice == '4':
+            cart.check_out()
         else:
             print('Invalid Option! Try again!')
 
