@@ -1,12 +1,12 @@
 class ShoppingCart:
     def __init__(self):
         self.items = {}
-    def display_cart(self):
-        if not self.items:
-            print('Your shopping cart is empty!')
-        else:
-            for item,details in self.items.items():
-                print(f'{item} - ${details['price']} - Quantity: {details['quantity']}')
+    # def display_cart(self):
+    #     if not self.items:
+    #         print('Your shopping cart is empty!')
+    #     else:
+    #         for item,details in self.items.items():
+    #             print(f'{item} - ${details['price']} - Quantity: {details['quantity']}')
     
     def add_items(self, item, price, quantity):
         if item in self.items:
@@ -36,3 +36,8 @@ class ShoppingCart:
                 total += value['price'] * value['quantity']
         print('Total:', total)
         self.items.clear()
+    # ***************** Adding magic methods ********************
+    def __str__(self):
+        if not self.items:
+            return 'Your shopping cart is empty!'
+        return "\n".join([f'{item} - ${details['price']} x {details['quantity']}' for item,details in self.items.items()])

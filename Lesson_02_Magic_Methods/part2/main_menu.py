@@ -11,7 +11,7 @@ def main():
             print('Thank you for shopping')
             break
         elif choice == '1':
-            cart.display_cart()
+            print(cart)
         elif choice == '2':
             item = input('Enter the item name: ')
             price = float(input('Enter the price: '))
