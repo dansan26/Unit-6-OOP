@@ -1,32 +1,19 @@
-class ShoppingCart:
-    def __init__(self):
-        self.items = {}
-    # def display_cart(self):
-    #     if not self.items:
-    #         print('Your shopping cart is empty!')
-    #     else:
-    #         for item,details in self.items.items():
-    #             print(f'{item} - ${details['price']} - Quantity: {details['quantity']}')
-    
-    def add_items(self, item, price, quantity):
-        if item in self.items:
-            self.items[item]['quantity'] += quantity
-        else:
-            self.items[item] = {'price': price, 'quantity': quantity}
+from items import Item, DigitalItem, PerishableItem
 
-    def remove_item(self, item, quantity):
-        if item in self.items:
-            if quantity <= self.items[item]['quantity']:
-                new_quantity = self.items[item]['quantity'] - quantity
-                if new_quantity < 1:
-                    self.__delitem__(item)
-                else:
-                    self.items[item]['quantity'] -= quantity
-            else:
-                print('The quantity you want removed exceeds the quantity you have : Please try again!')
-        else:
-            print('This item does not exist in the cart')
-    
+class ShoppingCart:
+    # Class Variable
+    total_carts = 0
+    def __init__(self):
+        # self.items = {}
+        self.items = []
+        # Unique ID for each car instance
+        self.cart_id = ShoppingCart.total_carts + 1
+        # Increment the class variable
+        ShoppingCart.total_carts += 1
+    def add_items(self, item):
+        self.items.append(item)
+    def remove_item(self, item_name):
+        self.items = [item for item in self.items if item.name != item_name]
     def check_out(self):
         if not self.items:
             print('Cart is empty - Nothing to check out!')
@@ -34,12 +21,13 @@ class ShoppingCart:
             total = 0
             for value in self.items.values():
                 total += value['price'] * value['quantity']
-        print('Total:', total)
+        print(f'Total to pay from cart ID - {self.cart_id}: $ {total}')
         self.items.clear()
     # ***************** Adding magic methods ********************
     def __str__(self):
         if not self.items:
             return 'Your shopping cart is empty!'
+        print(f'Cart ID: {self.cart_id} contains:')
         return "\n".join([f'{item} - ${details['price']} x {details['quantity']}' for item,details in self.items.items()])
     def __repr__(self):
         return f'{self.__class__.__name__}({self.items})'
