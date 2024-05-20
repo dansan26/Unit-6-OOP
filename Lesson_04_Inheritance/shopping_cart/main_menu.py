@@ -21,7 +21,7 @@ def main():
             price = float(input('Enter the price: '))
             quantity = int(input('Enter quantity: '))
             if item_type == 'digital':
-                license_key = input('Enter the license ky')
+                license_key = input('Enter the license key: ')
                 item = ItemFactory.create_item(item_type, name, price, license_key, quantity)
             elif item_type == 'perishable':
                 expiration_date = input('Enter the expiration date: ')

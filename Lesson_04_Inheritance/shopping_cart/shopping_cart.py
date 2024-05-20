@@ -12,8 +12,15 @@ class ShoppingCart:
         ShoppingCart.total_carts += 1
     def add_items(self, item):
         self.items.append(item)
-    def remove_item(self, item_name):
-        self.items = [item for item in self.items if item.name != item_name]
+    def remove_item(self, item_name, quantity=1):
+        # self.items = [item for item in self.items if item.name != item_name]
+        for item in self.items:
+            if item.name == item_name:
+                if item.quantity <= quantity:
+                    self.items.remove(item)
+                else:
+                    item.quantity -= quantity
+                break
     def check_out(self):
         if not self.items:
             print('Cart is empty - Nothing to check out!')
@@ -28,7 +35,7 @@ class ShoppingCart:
         if not self.items:
             return 'Your shopping cart is empty!'
         print(f'Cart ID: {self.cart_id} contains:')
-        return "\n".join([f'{item} - ${details['price']} x {details['quantity']}' for item,details in self.items.items()])
+        return "\n".join([f'{item} - ${details['price']} x {details['quantity']}' for item,details in self.items])
     def __repr__(self):
         return f'{self.__class__.__name__}({self.items})'
     def __len__(self):
