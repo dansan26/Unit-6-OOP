@@ -29,7 +29,7 @@ class Item:
             raise ValueError('Quantity must be an integer!')
     
     def __str__(self):
-        return f"{self.name} - ${self.price} x {self.quantity}"
+        return f"{self.__name} - ${self.__price} x {self.__quantity}"
 
 class DigitalItem(Item):
     def __init__(self, name, price, license_key, quantity=1):
