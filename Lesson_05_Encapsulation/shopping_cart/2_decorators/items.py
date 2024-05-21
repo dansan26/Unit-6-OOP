@@ -15,7 +15,7 @@ class Item:
             raise ValueError('Please enter a string!')
     
     def __str__(self):
-        return f"{self.name} - ${self.price} x {self.quantity}"
+        return f"{self.__name} - ${self.price} x {self.quantity}"
 
 class DigitalItem(Item):
     def __init__(self, name, price, license_key, quantity=1):
