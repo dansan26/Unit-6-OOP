@@ -23,7 +23,7 @@ def main():
         elif choice == "1":
             cart.display_cart()
         elif choice == "2":
-            print("Available item types: ", ItemFactory.get_item_types())
+            print("Available item types: ", ItemFactory.get___item_types())
             item_type = input('Enter the item type:')
             name = input("Enter the item name:")
             price = float(input("Enter the price:"))
